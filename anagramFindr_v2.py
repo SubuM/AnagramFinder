@@ -7,26 +7,25 @@ import enchant
 
 def checkAngrm():
     d = enchant.Dict('en_US')
-    # word = input('Enter word: ')
     word = st.text_input('Enter your word:', placeholder='Enter your jumbled word')
     letters = [chr for chr in word]
     repeat_check = []
+    word_len = len(word)
 
-    for number in range(3, len(letters) + 1):  # For Loop
+    for number in range(word_len, len(letters) + 1):  # For Loop
         for current_set in combinations(letters, number):  # Combinations Function
             # Code for the Basic Anagram Finder
             for current in permutations(current_set):
                 current_word = ''.join(current)
                 if d.check(current_word) and current_word not in repeat_check:
-                    # print(current_word)
                     st.write(current_word)
                     repeat_check.append(current_word)
 
 
 def usrAuth():
     st.set_page_config(page_title='Anagram Solver', page_icon='random', initial_sidebar_state='auto')
-    # st.sidebar.image('./images/anagram.jpg')
-
+    st.sidebar.image('./images/anagram.png')
+    
     # hide hamburger menu and footer
     hide_st_style = """
                     <style>
